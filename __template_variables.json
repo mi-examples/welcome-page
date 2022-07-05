@@ -1,0 +1,241 @@
+{
+    "tags": [
+        {
+            "portal_page_template_tag_id": "427",
+            "portal_page_template_id": "100",
+            "name": "Title",
+            "uid": "4bc25c5059c334ab5a25",
+            "default_value": "Welcome",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "0",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "428",
+            "portal_page_template_id": "100",
+            "name": "Subtitle",
+            "uid": "bb5c19abfc8501995e57",
+            "default_value": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "1",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "429",
+            "portal_page_template_id": "100",
+            "name": "Static Box Title",
+            "uid": "5b0839fa488f10a1933b",
+            "default_value": "Sales &amp; Marketing",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "2",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "430",
+            "portal_page_template_id": "100",
+            "name": "Static Box Text",
+            "uid": "e9a8eb7038566052e610",
+            "default_value": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown.",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "3",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "499",
+            "portal_page_template_id": "100",
+            "name": "Logo url",
+            "uid": "05b9925767392bb287f8",
+            "default_value": "\/pt\/welcome-page\/img\/logo_sm.png",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "4",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "432",
+            "portal_page_template_id": "100",
+            "name": "Left Boxes",
+            "uid": "7c10bf572fa13c35af3f",
+            "default_value": "",
+            "additional_options": [
+                "title",
+                "icon",
+                {
+                    "name": "type",
+                    "type": "select",
+                    "options": [
+                        "type-1",
+                        "type-2",
+                        "type-3",
+                        "type-4"
+                    ]
+                },
+                {
+                    "name": "isFavorite",
+                    "type": "select",
+                    "options": [
+                        "yes",
+                        "no"
+                    ]
+                },
+                "folderId"
+            ],
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "5",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "Y",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "433",
+            "portal_page_template_id": "100",
+            "name": "Right Boxes",
+            "uid": "efc9ce03290554e32c43",
+            "default_value": "",
+            "additional_options": [
+                "title",
+                "href",
+                "icon",
+                {
+                    "name": "type",
+                    "type": "select",
+                    "options": [
+                        "type-1",
+                        "type-2",
+                        "type-3",
+                        "type-4"
+                    ]
+                }
+            ],
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "6",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "Y",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "500",
+            "portal_page_template_id": "100",
+            "name": "Color 1",
+            "uid": "91786a1415e6621cd4a8",
+            "default_value": "#499DC1",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "7",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "501",
+            "portal_page_template_id": "100",
+            "name": "Color 2",
+            "uid": "306117ed88c376a6329a",
+            "default_value": "#1B3D6C",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "8",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": null
+        },
+        {
+            "portal_page_template_tag_id": "505",
+            "portal_page_template_id": "100",
+            "name": "Color 3",
+            "uid": "1c1a4d24bc50aeaf7c51",
+            "default_value": "#2DB07A",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "9",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": ""
+        },
+        {
+            "portal_page_template_tag_id": "495",
+            "portal_page_template_id": "100",
+            "name": "Folders",
+            "uid": "31b516e32183683df378",
+            "default_value": "",
+            "additional_options": [
+                "icon",
+                "folderId",
+                "name"
+            ],
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "10",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "Y",
+            "description": ""
+        },
+        {
+            "portal_page_template_tag_id": "520",
+            "portal_page_template_id": "100",
+            "name": "Display Type",
+            "uid": "e123684f6e3764b401e1",
+            "default_value": "Visualisation",
+            "additional_options": "",
+            "tag_type": "text",
+            "tag_source": "static",
+            "javascript_code": "",
+            "display_order": "11",
+            "use_hmtl_editor_ind": "N",
+            "use_json_editor_ind": "N",
+            "json_list_ind": "N",
+            "description": "Accepts two different types of values - Visualisation or Full Viewer"
+        }
+    ],
+    "settings": {
+        "image_capture_timeout": "20",
+        "image_capture_on_event": "none",
+        "image_capture_css_selector": ""
+    }
+}

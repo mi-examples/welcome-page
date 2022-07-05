@@ -1,0 +1,335 @@
+<link rel="stylesheet" href="/pt/welcome-page/style.css">
+    <div id="w-main-wrapper" class="w-wrapper p-main-color-bg">
+        <div id="w-welcome-wrapper" class="w-welcome-container">
+            <div class="w-welcome-header">
+                <div class="w-welcome-header__content">
+                    <div class="w-welcome-header__title">
+                        [Title] <span id="w-user-name"></span>
+                    </div>
+                    <div class="w-welcome-header__sub-title">
+                        [Subtitle]
+                    </div>
+                </div>
+                <div class="w-welcome-header__logo">
+                    <img src="[Logo url]" alt="logo" class="w-welcome-header__logo-image">
+                </div>
+            </div>
+
+            <div class="w-welcome-content">
+                <div class="w-welcome-content__left" id="left-container">
+                    <div class="w-welcome-box-wrapper">
+                        <div class="w-welcome-static-box">
+                            <span class="w-welcome-static-box__title">
+                                [Static Box Title]
+                            </span>
+                                <span class="w-welcome-static-box__text">
+                                [Static Box Text]
+                            </span>
+                            <img src="/pt/welcome-page/img/analythics.svg" alt="analythics.svg" class="w-welcome-static-box__img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-welcome-content__right" id="right-container"></div>
+            </div>
+        </div>
+
+        <div class="w-left-bar-btn" id="w-left-bar-btn">
+            <div class="w-left-bar-btn__home p-border">
+                <img src="/pt/welcome-page/img/home-icon.svg"/>
+            </div>
+            <i class="fa fa-arrow-right w-left-bar-btn__icon p-main-color"></i>
+        </div>
+        <div class="w-left-bar" id="w-left-bar">
+            <div class="w-left-bar__close" id="w-left-bar-close"></div>
+            <div class="w-left-bar__content">
+
+                <div id="w-left-bar-favorites"></div>
+                <div id="w-left-bar-menu-wrapper"></div>
+            </div>
+            <div class="w-left-bar-back p-main-color">
+                <i class="fa fa-arrow-left w-left-bar-back__icon p-main-color"></i>
+                Back to Home
+            </div>
+        </div>
+
+        <div class="p-main-color-bg" id="w-iframe-wrapper"></div>
+    </div>
+
+<script>
+    const leftBoxes = [Left Boxes];
+    const rightBoxes = [Right Boxes];
+    const folders = [Folders];
+    const iframeDisplayType = '[Display Type]';
+    const iframeWrapper = $('#w-iframe-wrapper');
+    const welcomeWrapper = $('#w-welcome-wrapper');
+
+    const buildFavorite = () => {
+        const result = [];
+        $.ajax({
+            url: "/home/index/refresh/ajax/Y",
+            type: "POST",
+            data: {
+                "folder_items": "Y"
+            },
+            async: false,
+            success: function (response) {
+                let db = new DashboardStorage(response.data),
+                    rows = db.rows;
+
+                for (let item in rows) {
+                    if (rows[item]['favorite_id'] != 0) {
+                        result.push(rows[item]);
+                    }
+                }
+            }
+        });
+        return result;
+    };
+
+    const buildFolder = folderId => {
+        let result = '';
+        $.ajax({
+            url: "/home/index/refresh/ajax/Y",
+            type: "POST",
+            data: {
+                "folder_id": folderId,
+                "folder_items": "Y"
+            },
+            async: false,
+            success: function (response) {
+                let db = new DashboardStorage(response.data),
+                    rows = db.rows;
+                result = rows;
+            }
+        });
+        return result;
+    };
+
+    const buildFolderBox = (title, icon, type, isFavorite, folderId, container) => {
+        let $box = $(`<div class="w-welcome-box ${type}" data-folder="${folderId}"></div>`);
+        const $wrapper = $(`<div class="w-welcome-box-wrapper"></div>`);
+        const $img = $(`<img src="${icon}" alt="${icon}" class="w-welcome-box__img">`);
+        const $title = $(`<span class="w-welcome-box__title">${title}</span>`);
+
+        if (type == 'type-1') {
+            $box = $(`<div class="w-welcome-box p-main-color ${type}" data-folder="${folderId}"></div>`);
+        }
+
+        if (isFavorite == 'yes') {
+            $box = $(`<div class="w-welcome-box p-main-color ${type} is-favorite"></div>`);
+        }
+
+        $box.append($img);
+        $box.append($title);
+        $wrapper.append($box);
+
+        $(container).append($wrapper);
+    };
+
+    const buildLinkBox = (title, icon, href, type, label, container) => {
+        let $box = $(`<a class="w-welcome-box ${type}" href="${href}"></a>`);
+        const $wrapper = $(`<div class="w-welcome-box-wrapper"></div>`);
+        const $img = $(`<img src="${icon}" alt="${icon}" class="w-welcome-box__img">`);
+        const $title = $(`<span class="w-welcome-box__title">${title}</span>`);
+        const $label = $(`<span class="w-welcome-box__label">${label}</span>`);
+
+        if (type == 'type-1') {
+            $box = $(`<a class="w-welcome-box p-main-color ${type}" href="${href}"></a>`);
+        }
+
+        $box.append($img);
+        $box.append($title);
+        if (label && label.length !== 0) $box.append($label);
+        $wrapper.append($box);
+
+        $(container).append($wrapper);
+    };
+
+    const buildMenu = (icon, folder, name, container, folderId) => {
+        let uniqueFolderElements = [];
+        let asArray = Object.entries(folder);
+        const $menu = $(`<ul class="w-left-bar-menu" data-folder="${folderId}"></ul>`);
+        const $title = $(`<li class="w-left-bar-menu__title p-main-color-text">
+                                <div class="w-left-bar-menu__icon p-main-color-text">
+                                    <img src="${icon}" alt="${name}">
+                                </div>
+                                ${name}
+                            </li>`);
+
+        $menu.append($title);
+
+        asArray.filter(([key, value]) => {
+            let isDuplicate;
+
+            for (let item of uniqueFolderElements) {
+                if (item['element_id'] == value['element_id']) {
+                    isDuplicate = true;
+                    break;
+                } else {
+                    isDuplicate = false;
+                }
+            }
+
+            if (!isDuplicate) {
+                uniqueFolderElements.push(value);
+                return true;
+            }
+        });
+
+        for (let item in uniqueFolderElements) {
+            let element = uniqueFolderElements[item];
+
+            if (element['element_type'] != 'external report' && element['element_type'] != 'other external content' || element['has_access'] == 'N') {
+                continue;
+            }
+
+            let $item = $(`<li data-type="${element['element_type']}" data-iframe="element/${element['element_id']}/segment/${element['segment_value_id']}/" class="w-left-bar-menu__item p-main-color p-main-color-bg-hover">
+                                ${element['element_dashboard_name']}
+                            </li>`);
+
+            $menu.append($item);
+        }
+
+        $('#w-left-bar-menu-wrapper').append($menu);
+        $(container).append($menu);
+    };
+
+    const buildIframe = (src, type) => {
+        let iframe;
+        $('#frame').remove();
+
+        let height = $('#w-main-wrapper').height() + 5,
+            width = $('#w-main-wrapper').width();
+
+        let iframeType = '';
+        if (type == 'external report') {
+            iframeType = 'extreport';
+        } else if (type == 'other external content') {
+            iframeType = 'extcontent';
+        }
+
+        if (iframeDisplayType == 'Visualisation') {
+            console.log('here')
+            iframe = $(
+                `<iframe style="width:${width}px; height:${height}px; border: none;" name="frame" id="frame" frameborder="0" src="/${iframeType}/index/preview/${src}width/${width}/height/${height}"></iframe>`
+            );
+        } else if (iframeDisplayType == 'Full Viewer') {
+            iframe = $(
+                `<iframe style="width:${width}px; height:${height}px; border: none;" name="frame" id="frame" frameborder="0" src="/service/iframe/index/type/viewer/${src}width/${width}/height/${height}"></iframe>`
+            );
+        }
+
+        $('#w-iframe-wrapper').append(iframe);
+
+        iframe.on('load', function () {
+            const style = $(
+                '<style>.main-wrap-viewer .chart-container {border: none} html:not(.isMobileDevice):not(.without-scroll-fix):not(.mod_new_editor_view) {margin-left: 0!important;}</style>'
+            );
+            iframe.contents().find('head').append(style);
+        });
+
+        iframeWrapper.show();
+        welcomeWrapper.hide();
+    };
+
+    const openBar = () => {
+        $('#w-left-bar').addClass('open');
+    };
+
+    const closeBar = () => {
+        $('#w-left-bar').removeClass('open');
+    };
+
+    const userInfo = function() {
+        $.ajax({
+            url: '/index/index/user-info',
+            type: 'Get',
+            dataType:'json',
+            success: function (data) {
+                const userName = data.username;
+
+                if (data.first_name !== null) {
+                    $('#w-user-name').html(data.first_name);
+                }   else {
+                    $('#w-user-name').html(userName);
+                }
+            }
+        });
+    }
+
+
+    const applyColorStyles = function () {
+        const subColor1 = '[Color 1]';
+        const subColor2 = '[Color 2]';
+        const subColor3 = '[Color 3]'
+
+        const mainColor = colorsFT.mainActive;
+
+        const style = $(`<style>
+                .w-wrapper{background-color: ${mainColor}}
+                .w-welcome-box.type-1{color: ${mainColor}}
+                .w-welcome-static-box{background-color: ${mainColor}}
+                .w-welcome-box.type-2{background: ${subColor1}}
+                .w-welcome-box.type-3{background: ${subColor2}}
+                .w-welcome-box.type-4{background: ${subColor3}}
+            </style>`);
+
+        $('.main-side').append(style);
+    }
+
+    $(document).on('click', '.w-left-bar-btn__icon', openBar);
+    $(document).on('click', '#w-left-bar-close', closeBar);
+    $(document).on('click', '.w-left-bar-menu__item', function () {
+        $('.w-left-bar-menu__item.active').removeClass('active p-main-color-bg');
+        $(this).addClass('active p-main-color-bg');
+        buildIframe($(this).attr('data-iframe'), $(this).attr('data-type'));
+    });
+
+    $(document).on('click', '.w-welcome-box', function () {
+        if ($(this).hasClass('is-favorite')) {
+            let firstFavoriteItem = $('#w-left-bar-favorites').find('.w-left-bar-menu__item').first();
+            $('.w-left-bar-menu__item.active').removeClass('active p-main-color-bg');
+            firstFavoriteItem.addClass('active p-main-color-bg');
+            buildIframe(firstFavoriteItem.attr('data-iframe'), firstFavoriteItem.attr('data-type'));
+        } else {
+            let folderId = $(this).attr('data-folder');
+            let itemFolderId = $(`.w-left-bar-menu[data-folder="${folderId}`);
+            let menuItem =  itemFolderId.find('.w-left-bar-menu__item').eq(0);
+            let dataIframe = itemFolderId.find('.w-left-bar-menu__item').eq(0).attr('data-iframe');
+            let dataType = itemFolderId.find('.w-left-bar-menu__item').eq(0).attr('data-type');
+            $('.w-left-bar-menu__item.active').removeClass('active p-main-color-bg');
+            menuItem.addClass('active p-main-color-bg');
+            buildIframe(dataIframe, dataType);
+        }
+    });
+
+    $(document).on('click', '.w-left-bar-back, .w-left-bar-btn__home', () => {
+        iframeWrapper.hide().html('');
+        welcomeWrapper.show();
+        closeBar();
+    });
+
+    $(document).ready(function () {
+        folders.forEach((item) => {
+            let folder = buildFolder(item['folderId']);
+            buildMenu(item['icon'], folder, item['name'], '#w-left-bar-menu-wrapper', item['folderId']);
+        });
+
+        const favorites = buildFavorite();
+        buildMenu('/pt/welcome-page/img/star.svg', favorites, 'Favorites', '#w-left-bar-favorites');
+
+        leftBoxes.forEach((item) => {
+            buildFolderBox(item['title'], item['icon'], item['type'], item['isFavorite'], item['folderId'],
+                '#left-container');
+        });
+
+        rightBoxes.forEach((item) => {
+            buildLinkBox(item['title'], item['icon'], item['href'], item['type'], item['label'],
+                '#right-container');
+        });
+
+        userInfo();
+        applyColorStyles();
+    });
+</script>
