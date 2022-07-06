@@ -1,4 +1,4 @@
-# Corporate Operations Portal Page
+# Welcome Page Portal Page
 ## Introduction
 Some text
 
@@ -26,7 +26,7 @@ Some text
 <img src="" width=70%; height = 70%/>
 
 1. Below the grid, click **[+ New Template]**
-2. **Internal Name**: “links-page”
+2. **Internal Name**: “welcome-page”
 3. **[Save]**
 
 ### 2. Upload Assets
@@ -57,5 +57,5 @@ Once you have made all the changes, click **[Save]**.
 
 1. To display the Portal Page, select **[View]** in the **_Portal Page Editor_**. 
 <br>
-The Corporate Operations Portal Page is displayed. 
+The Welcome Page Portal Page is displayed. 
 
