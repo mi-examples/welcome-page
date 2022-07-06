@@ -57,5 +57,5 @@ Once you have made all the changes, click **[Save]**.
 
 1. To display the Portal Page, select **[View]** in the **_Portal Page Editor_**. 
 <br>
-The Links Portal Page is displayed. 
+The Corporate Operations Portal Page is displayed. 
 
