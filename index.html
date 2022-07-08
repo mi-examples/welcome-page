@@ -210,12 +210,12 @@
             iframeType = 'extcontent';
         }
 
-        if (iframeDisplayType == 'Visualisation') {
+        if (iframeDisplayType == 1) {
             console.log('here')
             iframe = $(
                 `<iframe style="width:${width}px; height:${height}px; border: none;" name="frame" id="frame" frameborder="0" src="/${iframeType}/index/preview/${src}width/${width}/height/${height}"></iframe>`
             );
-        } else if (iframeDisplayType == 'Full Viewer') {
+        } else if (iframeDisplayType == 2) {
             iframe = $(
                 `<iframe style="width:${width}px; height:${height}px; border: none;" name="frame" id="frame" frameborder="0" src="/service/iframe/index/type/viewer/${src}width/${width}/height/${height}"></iframe>`
             );
