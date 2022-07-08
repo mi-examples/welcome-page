@@ -222,15 +222,24 @@
             "name": "Display Type",
             "uid": "e123684f6e3764b401e1",
             "default_value": "Visualisation",
-            "additional_options": "",
-            "tag_type": "text",
+            "additional_options": [
+                {
+                    "id": "1",
+                    "text": "Visualisation"
+                },
+                {
+                    "id": "2",
+                    "text": "Full Viewer"
+                }
+            ],
+            "tag_type": "select",
             "tag_source": "static",
             "javascript_code": "",
             "display_order": "11",
             "use_hmtl_editor_ind": "N",
             "use_json_editor_ind": "N",
             "json_list_ind": "N",
-            "description": "Accepts two different types of values - Visualisation or Full Viewer"
+            "description": ""
         }
     ],
     "settings": {
