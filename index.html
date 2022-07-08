@@ -24,7 +24,7 @@
                         <span class="w-welcome-static-box__text">
                             [Static Box Text]
                         </span>
-                        <img src="/pt/welcome-page/img/analythics.svg" alt="analythics.svg" class="w-welcome-static-box__img">
+                        <img alt="analythics.svg" class="w-welcome-static-box__img">
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
 
     <div class="w-left-bar-btn" id="w-left-bar-btn">
         <div class="w-left-bar-btn__home p-border">
-            <img src="/pt/welcome-page/img/home-icon.svg" />
+            <img />
         </div>
         <i class="fa fa-arrow-right w-left-bar-btn__icon p-main-color"></i>
     </div>
@@ -319,6 +319,8 @@
     });
 
     $(document).ready(function () {
+        $('.w-welcome-static-box__img').attr('src', `/pt/${pageUrl}/img/analythics.svg`);
+        $('.w-left-bar-btn__home > img').attr('src', `/pt/${pageUrl}/img/home-icon.svg`);
         addMainStyles();
 
         folders.forEach((item) => {
@@ -327,7 +329,7 @@
         });
 
         const favorites = buildFavorite();
-        buildMenu('/pt/welcome-page/img/star.svg', favorites, 'Favorites', '#w-left-bar-favorites');
+        buildMenu(`/pt/${pageUrl}/img/star.svg`, favorites, 'Favorites', '#w-left-bar-favorites');
 
         leftBoxes.forEach((item) => {
             buildFolderBox(item['title'], item['icon'], item['type'], item['isFavorite'], item['folderId'],
